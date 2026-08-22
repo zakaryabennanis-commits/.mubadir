@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الفرص التطوعية | مبادر</title>
+<meta name="description" content="اكتشف أحدث الفرص التطوعية عبر مدن ليبيا مع توصيات ذكية وفلاتر متقدّمة وخريطة تفاعلية.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/mubader.css">
+</head>
+<body data-page="opportunities">
+<div id="mub-nav"></div>
+
+<section class="page-intro">
+  <div class="container">
+    <div class="crumb">الرئيسية / الفرص</div>
+    <h1>الفرص التطوعية عبر ليبيا</h1>
+    <p>محدّثة يوميًا من جهات موثّقة. اختر مجالك ومدينتك — وسنقترح ما يناسبك.</p>
+  </div>
+</section>
+
+<main>
+
+<section class="block" id="opportunities">
+  <div class="container">
+    <div class="section-tag">توصيات مخصّصة</div>
+    <div class="reco-band reveal" style="margin-bottom:28px;">
+      <div>
+        <div class="reco-title">توصيات ذكية لك</div>
+        <div class="reco-sub">اختر اهتماماتك وسنقترح فرصًا قريبة منك جغرافيًا وزمنيًا.</div>
+        <div class="reco-chips" id="recoChips">
+          <span class="reco-chip on" data-tag="تعليم">تعليم</span>
+          <span class="reco-chip" data-tag="صحة">صحة</span>
+          <span class="reco-chip" data-tag="بيئة">بيئة</span>
+          <span class="reco-chip" data-tag="تقنية">تقنية</span>
+          <span class="reco-chip on" data-tag="طرابلس">📍 طرابلس</span>
+        </div>
+      </div>
+      <div class="reco-list" id="recoList">
+        <div class="reco-item"><div><h4>مساعد صف — مدرسة الأمل</h4><div class="meta">طرابلس · بُعد 3 كم · يبدأ الأحد</div></div><span class="match">تطابق 94%</span></div>
+        <div class="reco-item"><div><h4>توثيق حملة تشجير</h4><div class="meta">طرابلس · بُعد 5 كم · هذا الأسبوع</div></div><span class="match">تطابق 87%</span></div>
+        <div class="reco-item"><div><h4>ورشة برمجة للأطفال</h4><div class="meta">عن بُعد · مرن</div></div><span class="match">تطابق 82%</span></div>
+      </div>
+    </div>
+
+    <div class="head-row"><div><h2>أحدث الفرص المتاحة الآن</h2></div></div>
+    <div class="filters" id="filterBar" role="tablist">
+      <button class="filter-btn active" data-f="all">الكل</button>
+      <button class="filter-btn" data-f="تعليم">تعليم</button>
+      <button class="filter-btn" data-f="صحة">صحة</button>
+      <button class="filter-btn" data-f="بيئة">بيئة</button>
+      <button class="filter-btn" data-f="طوارئ">طوارئ</button>
+      <button class="filter-btn" data-f="تقنية">تقنية</button>
+      <button class="filter-btn" data-f="ثقافة">ثقافة</button>
+    </div>
+    <div class="card-grid" id="oppGrid">
+      <div class="opp-card" data-cat="تعليم"><div class="opp-top"><span class="opp-cat">تعليم</span><span class="opp-mode">حضوري</span></div><h3>معلمو دعم تعليمي — طرابلس</h3><p class="opp-meta"><span>📍 طرابلس</span><span>🗓 يبدأ 20 يوليو</span></p><button class="opp-apply">تقدّم الآن ←</button></div>
+      <div class="opp-card" data-cat="صحة"><div class="opp-top"><span class="opp-cat">صحة</span><span class="opp-mode">حضوري</span></div><h3>حملة توعية صحية — بنغازي</h3><p class="opp-meta"><span>📍 بنغازي</span><span>🗓 15–18 يوليو</span></p><button class="opp-apply">تقدّم الآن ←</button></div>
+      <div class="opp-card" data-cat="بيئة"><div class="opp-top"><span class="opp-cat">بيئة</span><span class="opp-mode">حضوري</span></div><h3>تشجير الواجهة البحرية — مصراتة</h3><p class="opp-meta"><span>📍 مصراتة</span><span>🗓 22 يوليو</span></p><button class="opp-apply">تقدّم الآن ←</button></div>
+      <div class="opp-card" data-cat="طوارئ"><div class="opp-top"><span class="opp-cat">طوارئ</span><span class="opp-mode">حضوري</span></div><h3>فريق استجابة أولية — سبها</h3><p class="opp-meta"><span>📍 سبها</span><span>🗓 مستمر</span></p><button class="opp-apply">تقدّم الآن ←</button></div>
+      <div class="opp-card" data-cat="تقنية"><div class="opp-top"><span class="opp-cat">تقنية</span><span class="opp-mode">عن بُعد</span></div><h3>محتوى رقمي لتوثيق المبادرات</h3><p class="opp-meta"><span>📍 عن بُعد</span><span>🗓 مرن</span></p><button class="opp-apply">تقدّم الآن ←</button></div>
+      <div class="opp-card" data-cat="ثقافة"><div class="opp-top"><span class="opp-cat">ثقافة</span><span class="opp-mode">حضوري</span></div><h3>مهرجان التراث الليبي — الزاوية</h3><p class="opp-meta"><span>📍 الزاوية</span><span>🗓 5 أغسطس</span></p><button class="opp-apply">تقدّم الآن ←</button></div>
+      <div class="opp-card" data-cat="تعليم"><div class="opp-top"><span class="opp-cat">تعليم</span><span class="opp-mode">عن بُعد</span></div><h3>معلم لغة إنجليزية أونلاين</h3><p class="opp-meta"><span>📍 عن بُعد</span><span>🗓 مرن</span></p><button class="opp-apply">تقدّم الآن ←</button></div>
+      <div class="opp-card" data-cat="صحة"><div class="opp-top"><span class="opp-cat">صحة</span><span class="opp-mode">حضوري</span></div><h3>مساعدة في مركز التبرع بالدم</h3><p class="opp-meta"><span>📍 طرابلس</span><span>🗓 كل خميس</span></p><button class="opp-apply">تقدّم الآن ←</button></div>
+      <div class="opp-card" data-cat="بيئة"><div class="opp-top"><span class="opp-cat">بيئة</span><span class="opp-mode">حضوري</span></div><h3>تنظيف الشواطئ — درنة</h3><p class="opp-meta"><span>📍 درنة</span><span>🗓 30 يوليو</span></p><button class="opp-apply">تقدّم الآن ←</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="block alt" id="categories">
+  <div class="container">
+    <div class="section-tag">مجالات التطوع</div>
+    <div class="head-row"><div><h2>اختر مجالك</h2><p class="lede">12 مجالًا يغطي أولويات المجتمع الليبي.</p></div></div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<section class="block" id="map">
+  <div class="container">
+    <div class="section-tag">خريطة ليبيا التفاعلية</div>
+    <div class="head-row"><div><h2>التطوع حسب المدينة</h2><p class="lede">اضغط على أي مدينة لعرض إحصائياتها.</p></div></div>
+    <div class="map-wrap">
+      <div class="map-svg-wrap">
+        <svg viewBox="0 0 400 260" width="100%" role="img" aria-label="خريطة ليبيا التفاعلية">
+          <path d="M20 60 L120 30 L260 25 L360 55 L380 110 L340 180 L260 230 L150 235 L60 200 L25 130 Z" fill="#ECF0D7" stroke="#C9B98A" stroke-width="2"/>
+          <g class="city-dot selected" data-city="tripoli"><circle cx="70" cy="90" r="7" fill="#6B7A2E"/><title>طرابلس</title></g>
+          <g class="city-dot" data-city="benghazi"><circle cx="290" cy="90" r="7" fill="#6B7A2E"/><title>بنغازي</title></g>
+          <g class="city-dot" data-city="misrata"><circle cx="140" cy="95" r="7" fill="#6B7A2E"/><title>مصراتة</title></g>
+          <g class="city-dot" data-city="sabha"><circle cx="150" cy="190" r="7" fill="#6B7A2E"/><title>سبها</title></g>
+          <g class="city-dot" data-city="zawiya"><circle cx="45" cy="100" r="7" fill="#6B7A2E"/><title>الزاوية</title></g>
+          <g class="city-dot" data-city="bayda"><circle cx="330" cy="70" r="7" fill="#6B7A2E"/><title>البيضاء</title></g>
+        </svg>
+      </div>
+      <div class="map-panel" id="mapPanel">
+        <h3 id="mapCity">طرابلس</h3>
+        <div class="row"><span>المتطوعون</span><b id="mapVol">4,120</b></div>
+        <div class="row"><span>الفرص النشطة</span><b id="mapOpp">86</b></div>
+        <div class="row"><span>الساعات المسجّلة</span><b id="mapHrs">22,400</b></div>
+        <div class="row" style="border:none;"><span>المنظمات</span><b id="mapOrg">54</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="mub-footer"></div>
+<script src="/mubader.js"></script>
+</body>
+</html>

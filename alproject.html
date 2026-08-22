@@ -1,0 +1,566 @@
+لقد قمت بتطوير العرض بالكامل ليحمل **الهوية البصرية المتكاملة** التي تعكس الطابع المؤسسي المينيمالست المعتمد. يعتمد هذا التصميم على تناغم لوني دقيق يجمع بين **الأخضر الداكن**، **الذهبي الخردلي**، و**العاجي**، مع خطوط نظيفة، وزوايا دائرية (Rounded Corners) مستوحاة من واجهات الاستخدام المتقدمة.
+
+كما تم دمج حركيات (Motion) انسيابية وهادئة لعناصر العرض، وتخصيص مساحة لشعار المؤسسة (بحرف M مدمج يرمز للعمل الجماعي) في الزاوية العليا، ليصبح العرض جاهزاً للاستخدام كمنتج نهائي.
+
+يمكنك نسخ الكود وحفظه كملف `index.html` وفتحه مباشرة:
+
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مبادرة التحول الرقمي | هوية متكاملة</title>
+    <!-- Tajawal Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette Core */
+            --brand-green: #0F251D;      /* أخضر داكن */
+            --brand-gold: #DCA73A;       /* ذهبي خردلي */
+            --brand-ivory: #F9F6EE;      /* عاجي */
+            --card-bg: rgba(249, 246, 238, 0.04);
+            --card-border: rgba(220, 167, 58, 0.2);
+            --blur-effect: blur(16px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            outline: none;
+        }
+
+        body {
+            background-color: var(--brand-green);
+            color: var(--brand-ivory);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 50% 0%, rgba(220, 167, 58, 0.05) 0%, transparent 60%);
+        }
+
+        /* Branding Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo svg {
+            width: 38px;
+            height: 38px;
+            fill: var(--brand-gold);
+        }
+
+        .brand-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--brand-ivory);
+            letter-spacing: 0.5px;
+        }
+
+        .brand-text span {
+            color: var(--brand-gold);
+            font-weight: 400;
+        }
+
+        .presentation-badge {
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            color: rgba(249, 246, 238, 0.7);
+            background: var(--card-bg);
+            backdrop-filter: var(--blur-effect);
+        }
+
+        /* Slide Container */
+        .slider-wrapper {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 10%;
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateY(20px) scale(0.98);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Minimalist Typography */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--brand-gold);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .lead {
+            font-size: 1.3rem;
+            color: rgba(249, 246, 238, 0.8);
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* UI Cards (Apple-style Rounded Corners & Glassmorphism) */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .ui-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px; /* Apple UI style */
+            padding: 30px;
+            backdrop-filter: var(--blur-effect);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ui-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 0%;
+            background: var(--brand-gold);
+            transition: height 0.4s ease;
+        }
+
+        .ui-card:hover {
+            transform: translateY(-8px);
+            background: rgba(249, 246, 238, 0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .ui-card:hover::before {
+            height: 100%;
+        }
+
+        .ui-card h3 {
+            font-size: 1.3rem;
+            color: var(--brand-gold);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .ui-card p {
+            font-size: 1rem;
+            color: rgba(249, 246, 238, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Modern Timeline Layout */
+        .timeline-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            top: 24px;
+            right: 50px;
+            left: 50px;
+            height: 2px;
+            background: var(--card-border);
+            z-index: 1;
+        }
+
+        .timeline-node {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 22%;
+            text-align: center;
+        }
+
+        .node-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--brand-green);
+            border: 2px solid var(--brand-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--brand-gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(220, 167, 58, 0.2);
+        }
+
+        .timeline-node h4 {
+            color: var(--brand-ivory);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-node p {
+            color: rgba(249, 246, 238, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 12px 24px;
+            border-radius: 30px;
+            backdrop-filter: var(--blur-effect);
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--brand-ivory);
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--brand-green);
+            background: var(--brand-gold);
+        }
+
+        .dots-container {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(249, 246, 238, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--brand-gold);
+            transform: scale(1.3);
+        }
+
+        /* Stats Component */
+        .stats-wrapper {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--brand-gold);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(249, 246, 238, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Identity -->
+    <header>
+        <div class="brand-logo">
+            <!-- Minimalist M Logo reflecting Partnership/Human Touch -->
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20,80 L20,30 L45,60 L55,60 L80,30 L80,80" stroke="var(--brand-gold)" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+                <circle cx="50" cy="25" r="8" fill="var(--brand-gold)"/>
+            </svg>
+            <div class="brand-text">مبادرة <span>التحول الرقمي</span></div>
+        </div>
+        <div class="presentation-badge">عرض استراتيجي</div>
+    </header>
+
+    <!-- Slides Wrapper -->
+    <div class="slider-wrapper">
+        
+        <!-- Slide 1: غلاف المبادرة -->
+        <div class="slide active">
+            <h1>الانتقال نحو الاستدامة الرقمية</h1>
+            <p class="lead">برنامج تطبيقي متكامل لتمكين أصحاب المشاريع الصغيرة والمتوسطة من تجاوز عقبة الإدارة التقليدية وتأسيس بيئة عمل رقمية تضمن النمو والتنافسية.</p>
+            
+            <div class="stats-wrapper">
+                <div class="stat-item">
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">أشهر من المرافقة</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">15</span>
+                    <span class="stat-label">مشروعاً مستهدفاً</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">أثر تطبيقي مباشر</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: تحديد الواقع -->
+        <div class="slide">
+            <h2>الواقع الميداني للمشاريع</h2>
+            <p class="lead">بالرغم من التغطية الرقمية، تقف أغلب مشاريعنا المحلية عاجزة أمام الاستفادة الحقيقية من التكنولوجيا، مما يحد من فرص استدامتها.</p>
+            
+            <div class="cards-grid">
+                <div class="ui-card">
+                    <h3>الإدارة اليدوية</h3>
+                    <p>اعتماد تام على السجلات الورقية والذاكرة الشخصية، مما يرفع من معدلات الخطأ ويبطئ وتيرة العمل بشكل حاد.</p>
+                </div>
+                <div class="ui-card">
+                    <h3>حضور رقمي وهمي</h3>
+                    <p>الاكتفاء بإنشاء صفحات على منصات التواصل دون امتلاك أنظمة خلفية (Back-end) حقيقية تدير المبيعات وتتابع الزبائن.</p>
+                </div>
+                <div class="ui-card">
+                    <h3>غياب البيانات</h3>
+                    <p>انعدام القدرة على تحليل سلوكيات العملاء أو التنبؤ بالمبيعات، مما يجعل اتخاذ القرارات الإدارية قائماً على التخمين.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: فجوة المشهد الحالي -->
+        <div class="slide">
+            <h2>تشخيص الفجوة الحقيقية</h2>
+            <p class="lead">المشكلة ليست في ندرة التكنولوجيا، بل في طريقة تقديمها. البرامج الحالية تكتفي بالجانب النظري وتتجاهل المرافقة التطبيقية.</p>
+            
+            <div class="cards-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="ui-card">
+                    <h3>وهم المعرفة دون التنفيذ</h3>
+                    <p>الدورات التقليدية تنتهي بمجرد توزيع الشهادات، ويعود صاحب المشروع لممارسة نفس أخطائه الإدارية لصعوبة تطبيق ما تعلمه بمفرده.</p>
+                </div>
+                <div class="ui-card">
+                    <h3>حاجز التكلفة المزعوم</h3>
+                    <p>الاعتقاد السائد بأن التحول الرقمي يتطلب ميزانيات ضخمة وبرمجيات معقدة، مما يخلق حاجزاً نفسياً يمنع المبادرين من بدء رحلة الرقمنة.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: المنهجية (الرحلة) -->
+        <div class="slide">
+            <h2>منهجية المبادرة التطبيقية</h2>
+            <p class="lead">استبدلنا مقاعد التدريب التقليدية بنموذج عملي متسلسل يعتمد على التشخيص الدقيق والمرافقة الميدانية.</p>
+            
+            <div class="timeline-container">
+                <div class="timeline-node">
+                    <div class="node-circle">1</div>
+                    <h4>التشخيص الرقمي</h4>
+                    <p>تحليل الوضع الراهن وإعداد خطة تحول فردية.</p>
+                </div>
+                <div class="timeline-node">
+                    <div class="node-circle">2</div>
+                    <h4>بناء القدرات</h4>
+                    <p>ورش تطبيقية في التسويق وإدارة العمليات.</p>
+                </div>
+                <div class="timeline-node">
+                    <div class="node-circle">3</div>
+                    <h4>التطبيق الفعلي</h4>
+                    <p>تفعيل أداة رقمية واحدة على الأقل داخل المشروع.</p>
+                </div>
+                <div class="timeline-node">
+                    <div class="node-circle">4</div>
+                    <h4>قياس الأثر</h4>
+                    <p>عرض النتائج وقصص النجاح في اليوم الختامي.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: الترسانة التقنية -->
+        <div class="slide">
+            <h2>مجالات التحول المستهدفة</h2>
+            <p class="lead">تمكين أصحاب المشاريع عبر باقة من الأدوات الرقمية المرنة، منخفضة التكلفة، وذات الأثر المباشر على الأداء.</p>
+            
+            <div class="cards-grid">
+                <div class="ui-card">
+                    <h3>إدارة علاقات العملاء (CRM)</h3>
+                    <p>تنظيم قوائم الزبائن، متابعة الطلبات، وتخصيص قنوات التواصل لضمان تجربة مستخدم استثنائية وبناء ولاء طويل الأمد.</p>
+                </div>
+                <div class="ui-card">
+                    <h3>أتمتة العمليات (Automation)</h3>
+                    <p>نقل المهام الإدارية والمخزنية إلى أنظمة سحابية متكاملة لتقليل الجهد البشري وضمان استمرارية العمل بدقة.</p>
+                </div>
+                <div class="ui-card">
+                    <h3>أدوات الذكاء الاصطناعي</h3>
+                    <p>توظيف التقنيات الحديثة في صناعة المحتوى، تحليل البيانات، وتسريع آليات اتخاذ القرار داخل المنشأة.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: الأثر والمؤشرات -->
+        <div class="slide">
+            <h2>حوكمة الأداء وقياس النتائج</h2>
+            <p class="lead">لا نعتمد على أعداد الحضور كمؤشر للنجاح، بل نرتكز على التغيير الإجرائي الموثق داخل هيكلة المشاريع.</p>
+            
+            <div class="cards-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="ui-card">
+                    <h3>التقييم القبلي والبعدي (Pre/Post)</h3>
+                    <p>مقارنة الجاهزية الرقمية للمشروع قبل دخول المبادرة وبعد إتمام الـ 4 أشهر عبر نماذج قياس أداء واضحة.</p>
+                </div>
+                <div class="ui-card">
+                    <h3>نسبة التفعيل الميداني</h3>
+                    <p>المعيار الذهبي للمبادرة هو وصول 90% على الأقل من المشاريع إلى تفعيل نظام رقمي يعمل بكفاءة وبشكل مستقل.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: الخاتمة -->
+        <div class="slide">
+            <h2>بناء نماذج للنجاح</h2>
+            <p class="lead">التحول الرقمي هو مسار حتمي وليس خياراً ترفيهياً. شراكتنا اليوم ستُنتج الدفعة الأولى من المشاريع الرائدة التي ستقود اقتصاد الغد.</p>
+            <div style="margin-top: 30px; display: inline-block; border-bottom: 2px solid var(--brand-gold); padding-bottom: 5px; color: var(--brand-gold); font-size: 1.2rem; font-weight: 700;">
+                شكراً لاهتمامكم
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Core -->
+    <div class="nav-bar">
+        <button class="nav-btn" id="prev-btn" onclick="prevSlide()">&#10095;</button>
+        <div class="dots-container" id="dots-container">
+            <!-- Dots will be generated here -->
+        </div>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">&#10094;</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const dotsContainer = document.getElementById('dots-container');
+        let currentSlide = 0;
+
+        // Generate Dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlider() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                dots[index].classList.remove('active');
+                
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                    dots[index].classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlider();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlider();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') nextSlide();
+            if (e.key === 'ArrowRight') prevSlide();
+        });
+    </script>
+</body>
+</html>
+
+```
