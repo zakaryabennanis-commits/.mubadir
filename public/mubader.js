@@ -1,4 +1,4 @@
-/* MUBADER — shared runtime: nav, footer, chatbot, counters, reveal */
+﻿/* MUBADER — shared runtime: nav, footer, chatbot, counters, reveal */
 (function(){
   const PAGES = [
     {href:'/mubader.html', label:'الرئيسية', key:'home'},
@@ -17,8 +17,8 @@
     navHost.innerHTML = `
     <nav class="nav" aria-label="التنقل الرئيسي">
       <div class="nav-row">
-        <a href="/mubader.html" class="logo" style="text-decoration:none;" aria-label="مبادر — الصفحة الرئيسية">
-          <img src="/logo-mubader.png" alt="شعار مبادر" class="brand-logo" />
+        <a href="./mubader.html" class="logo" style="text-decoration:none;" aria-label="مبادر — الصفحة الرئيسية">
+          <img src="./logo-mubader.png" alt="شعار مبادر" class="brand-logo" />
         </a>
         <ul class="nav-links" id="navLinks">
           ${PAGES.map(p=>`<li><a href="${p.href}" class="${p.key===currentPage?'active':''}">${p.label}</a></li>`).join('')}
@@ -52,18 +52,18 @@
           <div class="foot-col">
             <h4>روابط سريعة</h4>
             <ul>
-              <li><a href="/opportunities.html">الفرص</a></li>
-              <li><a href="/academy.html">الأكاديمية</a></li>
-              <li><a href="/portfolio.html">المحفظة الرقمية</a></li>
-              <li><a href="/awards.html">قائمة التقدير</a></li>
+              <li><a href="./opportunities.html">الفرص</a></li>
+              <li><a href="./academy.html">الأكاديمية</a></li>
+              <li><a href="./portfolio.html">المحفظة الرقمية</a></li>
+              <li><a href="./awards.html">قائمة التقدير</a></li>
             </ul>
           </div>
           <div class="foot-col">
             <h4>الحوكمة</h4>
             <ul>
-              <li><a href="/about.html">عن المنصة</a></li>
-              <li><a href="/about.html#transparency">صفحة الشفافية</a></li>
-              <li><a href="/about.html#steering">اللجنة التوجيهية</a></li>
+              <li><a href="./about.html">عن المنصة</a></li>
+              <li><a href="./about.html#transparency">صفحة الشفافية</a></li>
+              <li><a href="./about.html#steering">اللجنة التوجيهية</a></li>
             </ul>
           </div>
           <div class="foot-col">
@@ -143,11 +143,11 @@
     let reply;
     if(/تسج|انضم|حساب/.test(q)) reply = 'للتسجيل كمتطوع: اضغط زر <b>"انضم كمتطوع"</b> أعلى الصف��ة، أنشئ حسابك، ثم اختر مجالاتك واهتماماتك — ستصلك فرص مقترحة فورًا.';
     else if(/نقاط|point|score|ترتيب/.test(q)) reply = '📊 <b>نقاط مبادر</b> هي مقياس التأثير في المنصة:<br>• كل ساعة تطوع = 5 نقاط<br>• إتمام فرصة = 20 نقطة<br>• شهادة أكاديمية = 40 نقطة<br>• قيادة فريق = 60 نقطة<br>• تقييم ممتاز من المنظمة = 15 نقطة إضافية.';
-    else if(/فرص|قريب|قرب/.test(q)) reply = 'لعرض الفرص القريبة منك، افتح صفحة <a href="/opportunities.html">الفرص</a> واستخدم التوصيات الذكية بعد اختيار مدينتك واهتماماتك.';
-    else if(/أكاديم|شهاد|دور/.test(q)) reply = '🎓 أكاديمية مبادر تقدّم دورات قصيرة بشهادات معتمدة تُضاف تلقائيًا إلى محفظتك الرقمية. زُر <a href="/academy.html">صفحة الأكاديمية</a>.';
-    else if(/محفظ|سيرة|cv/.test(q)) reply = 'محفظتك الرقمية تجمع ساعاتك، شهاداتك، وتقييمات المنظمات في رابط أنيق قابل للمشاركة. راجع <a href="/portfolio.html">المحفظة</a>.';
+    else if(/فرص|قريب|قرب/.test(q)) reply = 'لعرض الفرص القريبة منك، افتح صفحة <a href="./opportunities.html">الفرص</a> واستخدم التوصيات الذكية بعد اختيار مدينتك واهتماماتك.';
+    else if(/أكاديم|شهاد|دور/.test(q)) reply = '🎓 أكاديمية مبادر تقدّم دورات قصيرة بشهادات معتمدة تُضاف تلقائيًا إلى محفظتك الرقمية. زُر <a href="./academy.html">صفحة الأكاديمية</a>.';
+    else if(/محفظ|سيرة|cv/.test(q)) reply = 'محفظتك الرقمية تجمع ساعاتك، شهاداتك، وتقييمات المنظمات في رابط أنيق قابل للمشاركة. راجع <a href="./portfolio.html">المحفظة</a>.';
     else if(/شكر|thank/.test(q)) reply = 'العفو 🌿 نحن هنا دائمًا لخدمة كل متطوع في ليبيا.';
-    else reply = 'شكرًا لسؤالك! فريقنا سيراجع طلبك ويعود إليك قريبًا. في الأثناء، جرّب زيارة <a href="/opportunities.html">صفحة الفرص</a> أو <a href="/about.html">صفحة عن المنصة</a>.';
+    else reply = 'شكرًا لسؤالك! فريقنا سيراجع طلبك ويعود إليك قريبًا. في الأثناء، جرّب زيارة <a href="./opportunities.html">صفحة الفرص</a> أو <a href="./about.html">صفحة عن المنصة</a>.';
     setTimeout(()=> addMsg(reply, 'bot'), 500);
   }
   chatForm.addEventListener('submit', (e)=>{
