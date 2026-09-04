@@ -79,6 +79,7 @@ a:hover{color:var(--olive-deep);}
 .logo .mark{width:32px; height:32px; flex-shrink:0;}
 .nav-links{display:flex; gap:22px; list-style:none;}
 .nav-links a{color:var(--ink-on-dark-soft); font-size:14px; transition:color .15s;}
+.mobile-nav-action{display:none;}
 .nav-links a:hover, .nav-links a.active{color:var(--sand-soft);}
 .nav-actions{display:flex; align-items:center; gap:10px;}
 .lang-toggle{font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--ink-on-dark-soft); border:1px solid rgba(244,235,211,.35); border-radius:999px; padding:5px 12px; cursor:pointer; background:transparent;}
@@ -95,10 +96,19 @@ a:hover{color:var(--olive-deep);}
 .btn-ghost:hover{background:var(--cream-3);}
 .menu-toggle{display:none; background:transparent; border:1px solid rgba(244,235,211,.4); color:var(--ink-on-dark); border-radius:8px; padding:6px 10px; cursor:pointer;}
 @media(max-width:900px){
+  .nav-row{padding:11px 18px; min-height:64px;}
   .nav-links{display:none;}
-  .nav-links.open{display:flex; position:absolute; top:100%; right:0; left:0; flex-direction:column; background:var(--olive-deep); padding:14px 24px; gap:14px; border-top:1px solid rgba(244,235,211,.14);}
-  .menu-toggle{display:inline-flex;}
+  .nav-links.open{display:flex; position:fixed; top:64px; right:0; left:0; height:calc(100dvh - 64px); flex-direction:column; align-items:stretch; background:linear-gradient(160deg,var(--olive-deep),#1d503d); padding:18px; gap:4px; border-top:1px solid rgba(244,235,211,.14); overflow-y:auto; overscroll-behavior:contain; box-shadow:0 18px 36px rgba(18,53,40,.28);}
+  .nav-links li{width:100%;}
+  .nav-links a{display:flex; align-items:center; min-height:48px; padding:10px 14px; border-radius:10px; font-size:15px; border-bottom:1px solid rgba(244,235,211,.08);}
+  .nav-links a.active{background:rgba(231,211,163,.11); border-color:rgba(231,211,163,.24);}
+  .mobile-nav-action{display:block; margin-top:8px;}
+  .mobile-nav-action+.mobile-nav-action{margin-top:2px;}
+  .mobile-nav-action a{justify-content:center; border:1px solid rgba(244,235,211,.3);}
+  .mobile-nav-action.primary a{background:var(--sand); color:var(--olive-deep); border-color:var(--sand); font-weight:800;}
+  .menu-toggle{display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; padding:0; font-size:22px; line-height:1;}
   .nav-actions .btn:not(.btn-sand){display:none;}
+  body.menu-open{overflow:hidden;}
 }
 
 /* HERO */
@@ -539,6 +549,105 @@ footer{background:var(--olive-deep); color:var(--ink-on-dark-soft); padding:56px
   .data-confidence{grid-template-columns:1fr;}
   .confidence-item{border-right:0;}
 }
+/* ============ MOBILE EXPERIENCE ============ */
+@media(max-width:640px){
+  html,body{max-width:100%; overflow-x:hidden;}
+  body{font-size:15px;}
+  .container{padding-inline:16px;}
+  .nav-row{padding-inline:16px; gap:8px;}
+  .logo,.brand-logo{flex:0 0 auto;}
+  .nav-actions{gap:7px;}
+  .nav-actions .btn-sand{padding:8px 12px!important; font-size:12px!important;}
+  .lang-toggle{padding:5px 9px; font-size:10px;}
+  .hero{padding:46px 0 40px;}
+  .hero-grid{gap:28px;}
+  .hero h1{font-size:clamp(29px,9vw,38px); line-height:1.28;}
+  .hero .lede-lg{font-size:15px; margin-bottom:24px;}
+  .hero-actions{flex-direction:column; gap:10px;}
+  .hero-actions .btn{width:100%; text-align:center; min-height:46px;}
+  .trust-strip{gap:7px; margin-top:20px;}
+  .trust-chip{font-size:10.5px; padding:5px 9px;}
+  .orbit-card{padding:19px;}
+  .orbit-stats{gap:14px 10px;}
+  .orbit-stat b{font-size:23px;}
+  .orbit-stat span{font-size:11px;}
+  .stats-band{padding:30px 0;}
+  .stats-grid{gap:20px 10px;}
+  .stat b{font-size:25px;}
+  .stat span{font-size:11px;}
+  section.block{padding:48px 0;}
+  .head-row{margin-bottom:24px; align-items:flex-start;}
+  h2{font-size:24px;}
+  .lede{font-size:14px;}
+  .page-intro{padding:36px 0 32px;}
+  .page-intro h1{font-size:28px; line-height:1.3;}
+  .page-intro p{font-size:14px;}
+  .filters{margin-inline:-16px; padding-inline:16px; flex-wrap:nowrap; scroll-snap-type:x proximity;}
+  .filter-btn{min-height:42px; scroll-snap-align:start;}
+  .opp-card,.story-card,.dash-card{padding:18px;}
+  .reco-band{padding:20px;}
+  .reco-item{align-items:flex-start;}
+  .cat-card{padding:18px 8px;}
+  .camp-card{padding:22px;}
+  .camp-card h3{font-size:18px;}
+  .camp-meta{gap:8px; font-size:10px;}
+  .map-svg-wrap,.map-panel{padding:18px;}
+  .media-grid{gap:10px;}
+  .leaderboard{padding:4px;}
+  .lb-row{padding:12px 8px; gap:8px;}
+  .lb-points{padding:4px 7px; font-size:10px;}
+  .badges-panel{padding:18px; justify-content:center;}
+  .portfolio-card{padding:20px;}
+  .pf-stats{gap:7px;}
+  .pf-stat{padding:10px 5px;}
+  .pf-stat b{font-size:17px;}
+  .pwa-band{padding:25px 20px; align-items:flex-start;}
+  .pwa-actions{width:100%;}
+  .pwa-actions .btn{flex:1; min-width:120px; text-align:center;}
+  .newsletter-row{width:100%; flex-direction:column;}
+  .newsletter-row input{width:100%; min-width:0; min-height:46px;}
+  .newsletter-row .btn{width:100%; min-height:46px;}
+  footer{padding:42px 0 22px;}
+  .foot-grid{gap:22px;}
+  .chat-fab{width:52px; height:52px; left:14px; bottom:14px; font-size:22px;}
+  .chat-panel{left:12px; right:12px; bottom:78px; width:auto; height:min(480px,72dvh); max-width:none; max-height:none;}
+  .impact-dashboard{padding-top:42px!important;}
+  .impact-head{gap:18px; margin-bottom:18px;}
+  .impact-actions{gap:7px;}
+  .impact-toolbar{padding:9px; margin-bottom:12px;}
+  .period-tabs{overflow-x:auto; max-width:100%;}
+  .period-tabs button{min-height:38px;}
+  .impact-kpis,.impact-main-grid,.impact-secondary-grid{gap:10px; margin-bottom:10px;}
+  .impact-kpi{padding:16px;}
+  .kpi-top{margin-bottom:12px;}
+  .impact-kpi strong{font-size:25px;}
+  .impact-panel{padding:16px;}
+  .panel-head{margin-bottom:14px;}
+  .bar-chart{grid-template-columns:repeat(12,minmax(38px,1fr)); height:215px; gap:5px; padding-bottom:2px; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:thin; scrollbar-color:var(--line-strong) transparent;}
+  .bar-item{min-width:38px;}
+  .chart-insight{font-size:10.5px;}
+  .region-row{grid-template-columns:22px minmax(0,1fr) auto;}
+  .data-confidence{border-radius:12px;}
+  .confidence-score,.confidence-item{padding:16px;}
+}
+@media(max-width:390px){
+  .container{padding-inline:14px;}
+  .nav-row{padding-inline:14px;}
+  .nav-actions .lang-toggle,.nav-actions .btn-sand{display:none;}
+  .hero h1{font-size:29px;}
+  .eyebrow{font-size:10.5px; padding-inline:10px;}
+  .stats-grid{gap:18px 6px;}
+  .filters{margin-inline:-14px; padding-inline:14px;}
+  .sector-content{grid-template-columns:1fr; justify-items:center;}
+  .sector-legend{width:100%;}
+  .outcome-grid{grid-template-columns:1fr;}
+  .chart-total b{font-size:15px;}
+  .panel-head h3{font-size:15px;}
+  .live-status,.impact-export{font-size:10.5px; padding-inline:9px;}
+}
+@media(hover:none){
+  .btn:hover,.opp-card:hover,.news-card:hover,.cat-card:hover,.academy-card:hover,.chat-fab:hover,.impact-kpi:hover{transform:none;}
+}
 @media print{
   .nav,.hero,.stats-band,.impact-toolbar,.impact-export,.chat-fab,.chat-panel,#stories,#campaigns,#newsletter,#mub-footer,main>section:not(.impact-dashboard){display:none!important;}
   .impact-dashboard{padding:20px 0!important; background:#fff!important;}
@@ -713,18 +822,37 @@ footer{background:var(--olive-deep); color:var(--ink-on-dark-soft); padding:56px
         </a>
         <ul class="nav-links" id="navLinks">
           ${PAGES.map(p=>`<li><a href="${p.href}" class="${p.key===currentPage?'active':''}">${p.label}</a></li>`).join('')}
+          <li class="mobile-nav-action"><a href="#">تسجيل الدخول</a></li>
+          <li class="mobile-nav-action primary"><a href="#">انضم كمتطوع</a></li>
         </ul>
         <div class="nav-actions">
           <button class="lang-toggle" id="langBtn" aria-label="تبديل اللغة">EN / <b>AR</b></button>
           <button class="btn btn-outline" style="padding:9px 16px; font-size:13px;">تسجيل الدخول</button>
           <button class="btn btn-sand" style="padding:9px 18px; font-size:13px;">انضم كمتطوع</button>
-          <button class="menu-toggle" id="menuBtn" aria-label="القائمة">☰</button>
+          <button class="menu-toggle" id="menuBtn" type="button" aria-label="فتح القائمة" aria-controls="navLinks" aria-expanded="false">☰</button>
         </div>
       </div>
     </nav>`;
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
-    menuBtn && menuBtn.addEventListener('click', ()=> navLinks.classList.toggle('open'));
+    function setMobileMenu(open){
+      if(!menuBtn || !navLinks) return;
+      navLinks.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.setAttribute('aria-label', open ? 'إغلاق القائمة' : 'فتح القائمة');
+      menuBtn.textContent = open ? '×' : '☰';
+      document.body.classList.toggle('menu-open', open);
+    }
+    menuBtn && menuBtn.addEventListener('click', ()=> setMobileMenu(!navLinks.classList.contains('open')));
+    navLinks && navLinks.addEventListener('click', (event)=>{
+      if(event.target.closest('a')) setMobileMenu(false);
+    });
+    document.addEventListener('keydown', (event)=>{
+      if(event.key === 'Escape') setMobileMenu(false);
+    });
+    window.addEventListener('resize', ()=>{
+      if(window.innerWidth > 900) setMobileMenu(false);
+    });
     const langBtn = document.getElementById('langBtn');
     langBtn && langBtn.addEventListener('click', ()=> alert('سيتم دعم التبديل الكامل للغة الإنجليزية في النسخة النهائية من المنصة.'));
   }

@@ -23,18 +23,37 @@
         </a>
         <ul class="nav-links" id="navLinks">
           ${PAGES.map(p=>`<li><a href="${p.href}" class="${p.key===currentPage?'active':''}">${p.label}</a></li>`).join('')}
+          <li class="mobile-nav-action"><a href="#">تسجيل الدخول</a></li>
+          <li class="mobile-nav-action primary"><a href="#">انضم كمتطوع</a></li>
         </ul>
         <div class="nav-actions">
           <button class="lang-toggle" id="langBtn" aria-label="تبديل اللغة">EN / <b>AR</b></button>
           <button class="btn btn-outline" style="padding:9px 16px; font-size:13px;">تسجيل الدخول</button>
           <button class="btn btn-sand" style="padding:9px 18px; font-size:13px;">انضم كمتطوع</button>
-          <button class="menu-toggle" id="menuBtn" aria-label="القائمة">☰</button>
+          <button class="menu-toggle" id="menuBtn" type="button" aria-label="فتح القائمة" aria-controls="navLinks" aria-expanded="false">☰</button>
         </div>
       </div>
     </nav>`;
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
-    menuBtn && menuBtn.addEventListener('click', ()=> navLinks.classList.toggle('open'));
+    function setMobileMenu(open){
+      if(!menuBtn || !navLinks) return;
+      navLinks.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.setAttribute('aria-label', open ? 'إغلاق القائمة' : 'فتح القائمة');
+      menuBtn.textContent = open ? '×' : '☰';
+      document.body.classList.toggle('menu-open', open);
+    }
+    menuBtn && menuBtn.addEventListener('click', ()=> setMobileMenu(!navLinks.classList.contains('open')));
+    navLinks && navLinks.addEventListener('click', (event)=>{
+      if(event.target.closest('a')) setMobileMenu(false);
+    });
+    document.addEventListener('keydown', (event)=>{
+      if(event.key === 'Escape') setMobileMenu(false);
+    });
+    window.addEventListener('resize', ()=>{
+      if(window.innerWidth > 900) setMobileMenu(false);
+    });
     const langBtn = document.getElementById('langBtn');
     langBtn && langBtn.addEventListener('click', ()=> alert('سيتم دعم التبديل الكامل للغة الإنجليزية في النسخة النهائية من المنصة.'));
   }
