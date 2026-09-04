@@ -59,6 +59,11 @@ img,svg{display:block; max-width:100%;}
 a{color:var(--olive); text-decoration:none;}
 a:hover{color:var(--olive-deep);}
 :focus-visible{outline:2px solid var(--olive); outline-offset:2px; border-radius:6px;}
+.sr-only{
+  position:absolute!important; width:1px!important; height:1px!important; padding:0!important;
+  margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important; border:0!important;
+}
 
 .container{max-width:1180px; margin:0 auto; padding:0 24px;}
 .eyebrow{
@@ -781,7 +786,7 @@ footer{background:var(--olive-deep); color:var(--ink-on-dark-soft); padding:56px
     <h2 style="margin-bottom:8px;">لا تفوّت فرصة تطوعية بالقرب منك</h2>
     <p class="lede" style="margin-bottom:20px;">اشترك واختر قناة التواصل المناسبة لك.</p>
     <div class="newsletter-row">
-      <label for="nl-email" style="position:absolute; left:-9999px;">البريد الإلكتروني</label>
+      <label for="nl-email" class="sr-only">البريد الإلكتروني</label>
       <input id="nl-email" type="email" placeholder="بريدك الإلكتروني">
       <button class="btn btn-primary">اشترك</button>
     </div>
@@ -927,7 +932,7 @@ footer{background:var(--olive-deep); color:var(--ink-on-dark-soft); padding:56px
         <span class="chat-sugg">شهادات الأكاديمية</span>
       </div>
       <form class="chat-input-row" id="chatForm">
-        <label for="chatInput" style="position:absolute; left:-9999px;">اكتب رسالتك</label>
+        <label for="chatInput" class="sr-only">اكتب رسالتك</label>
         <input id="chatInput" type="text" placeholder="اكتب سؤالك هنا..." autocomplete="off">
         <button class="chat-send" type="submit" aria-label="إرسال">➤</button>
       </form>

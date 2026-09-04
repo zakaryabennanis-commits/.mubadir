@@ -128,7 +128,7 @@
         <span class="chat-sugg">شهادات الأكاديمية</span>
       </div>
       <form class="chat-input-row" id="chatForm">
-        <label for="chatInput" style="position:absolute; left:-9999px;">اكتب رسالتك</label>
+        <label for="chatInput" class="sr-only">اكتب رسالتك</label>
         <input id="chatInput" type="text" placeholder="اكتب سؤالك هنا..." autocomplete="off">
         <button class="chat-send" type="submit" aria-label="إرسال">➤</button>
       </form>
