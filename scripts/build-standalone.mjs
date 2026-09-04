@@ -25,10 +25,10 @@ document.addEventListener("click", (event) => {
 `;
 
 const standalone = html
-  .replace('<link rel="stylesheet" href="./mubader.css">', `<style>\n${css}\n</style>`)
+  .replace(/<link rel="stylesheet" href="\.\/mubader\.css(?:\?[^\"]*)?">/, `<style>\n${css}\n</style>`)
   .replace(/<link rel="preconnect"[^>]*>\s*/g, "")
   .replace(/<link href="https:\/\/fonts\.googleapis\.com[^>]*>\s*/g, "")
-  .replace('<script src="./mubader.js"></script>', `<script>\n${js}\n${previewGuard}\n</script>`)
+  .replace(/<script src="\.\/mubader\.js(?:\?[^\"]*)?"><\/script>/, `<script>\n${js}\n${previewGuard}\n</script>`)
   .replaceAll("./logo-mubader.png", logoDataUrl)
   .replace("</head>", '<meta name="generator" content="Mubadir standalone preview">\n</head>');
 
