@@ -1,12 +1,13 @@
 ﻿/* MUBADER — shared runtime: nav, footer, chatbot, counters, reveal */
 (function(){
   const PAGES = [
-    {href:'/mubader.html', label:'الرئيسية', key:'home'},
-    {href:'/opportunities.html', label:'الفرص', key:'opportunities'},
-    {href:'/academy.html', label:'الأكاديمية', key:'academy'},
-    {href:'/portfolio.html', label:'المحفظة', key:'portfolio'},
-    {href:'/awards.html', label:'التقدير', key:'awards'},
-    {href:'/about.html', label:'عن المنصة', key:'about'},
+    {href:'./mubader.html', label:'الرئيسية', key:'home'},
+    {href:'./dashboard.html', label:'لوحة المؤشرات', key:'dashboard'},
+    {href:'./opportunities.html', label:'الفرص', key:'opportunities'},
+    {href:'./academy.html', label:'الأكاديمية', key:'academy'},
+    {href:'./portfolio.html', label:'المحفظة', key:'portfolio'},
+    {href:'./awards.html', label:'التقدير', key:'awards'},
+    {href:'./about.html', label:'عن المنصة', key:'about'},
   ];
 
   const currentPage = (document.body.dataset.page || 'home');
@@ -246,6 +247,63 @@
       set('mapCity', d.name); set('mapVol', d.vol); set('mapOpp', d.opp); set('mapHrs', d.hrs); set('mapOrg', d.org);
     });
   });
+
+  /* ---- national impact dashboard ---- */
+  const impactPeriod = document.getElementById('impactPeriod');
+  const impactChart = document.getElementById('impactChart');
+  const impactPeriods = {
+    month: {
+      total: '11,240',
+      volunteers: '3,680', hours: '11,240', value: '562 ألف', completion: '89.1%',
+      heights: [34,42,38,55,49,63,71,68,77,82,91,96],
+      values: ['210','320','290','540','610','780','920','1.1k','1.3k','1.5k','1.8k','1.9k'],
+      labels: ['1','3','5','8','10','13','16','19','22','25','28','30']
+    },
+    quarter: {
+      total: '31,320',
+      volunteers: '8,940', hours: '31,320', value: '1.57 مليون', completion: '88.4%',
+      heights: [31,37,44,51,48,59,66,73,69,81,89,96],
+      values: ['1.4k','1.6k','1.9k','2.1k','2.0k','2.4k','2.7k','2.9k','2.8k','3.3k','3.7k','4.1k'],
+      labels: ['أسبوع 1','2','3','4','5','6','7','8','9','10','11','12']
+    },
+    year: {
+      total: '96,500',
+      volunteers: '18,420', hours: '96,500', value: '4.82 مليون', completion: '87.6%',
+      heights: [29,35,41,48,56,63,70,76,85,92,97,94],
+      values: ['4.1k','4.8k','5.4k','6.2k','7.1k','7.8k','8.5k','9.2k','10.1k','10.8k','11.3k','11.2k'],
+      labels: ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر']
+    }
+  };
+  function updateImpactDashboard(period){
+    const data = impactPeriods[period];
+    if(!data || !impactChart) return;
+    const setKpi = (key,value)=>{
+      const el = document.querySelector(`[data-impact-kpi="${key}"]`);
+      if(el){ el.textContent = value; el.classList.remove('kpi-flash'); void el.offsetWidth; el.classList.add('kpi-flash'); }
+    };
+    setKpi('volunteers', data.volunteers);
+    setKpi('hours', data.hours);
+    setKpi('value', data.value);
+    setKpi('completion', data.completion);
+    const total = document.getElementById('chartTotal');
+    if(total) total.textContent = data.total;
+    impactChart.querySelectorAll('.bar-item').forEach((bar,index)=>{
+      bar.querySelector('i').style.setProperty('--bar-height', `${data.heights[index]}%`);
+      bar.querySelector('.bar-value').textContent = data.values[index];
+      bar.querySelector('b').textContent = data.labels[index];
+    });
+  }
+  if(impactPeriod){
+    impactPeriod.addEventListener('click',(event)=>{
+      const button = event.target.closest('button[data-period]');
+      if(!button) return;
+      impactPeriod.querySelectorAll('button').forEach(item=>item.classList.remove('active'));
+      button.classList.add('active');
+      updateImpactDashboard(button.dataset.period);
+    });
+  }
+  const impactExport = document.getElementById('impactExport');
+  if(impactExport) impactExport.addEventListener('click',()=>window.print());
 
   /* ---- newsletter channel ---- */
   document.querySelectorAll('.channel-chip').forEach(chip=>{

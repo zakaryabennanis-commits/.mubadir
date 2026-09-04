@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة المؤشرات الوطنية | مبادر</title>
+<meta name="description" content="لوحة مؤشرات الأثر التطوعي الوطنية لمنصة مبادر — بيانات المشاركة، التغطية الجغرافية، القطاعات، والنتائج الميدانية.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./mubader.css">
+</head>
+<body data-page="dashboard">
+
+<div id="mub-nav"></div>
+
+<header class="page-intro dashboard-intro">
+  <div class="container">
+    <div class="crumb">مبادر / مركز البيانات الوطني</div>
+    <h1>المرصد الوطني للتطوع</h1>
+    <p>من البيانات اليومية إلى قرار وطني أدق — رؤية موحّدة للأثر، الاحتياج، والفرص في كل المدن الليبية.</p>
+  </div>
+</header>
+
+<main>
+<!-- NATIONAL IMPACT DASHBOARD -->
+<section class="block impact-dashboard" id="impact-dashboard" aria-labelledby="impact-title">
+  <div class="container">
+    <div class="impact-head">
+      <div>
+        <div class="section-tag">مركز البيانات الوطني</div>
+        <h2 id="impact-title">لوحة مؤشرات الأثر التطوعي في ليبيا</h2>
+        <p class="lede">قراءة تنفيذية موحّدة تساعد صانع القرار على قياس المشاركة، توجيه الموارد، واكتشاف الفجوات بين المدن والقطاعات.</p>
+      </div>
+      <div class="impact-actions">
+        <div class="live-status"><span class="live-status-dot"></span> آخر تحديث: الآن</div>
+        <button class="impact-export" id="impactExport" type="button" aria-label="طباعة أو تصدير تقرير المؤشرات">
+          <span aria-hidden="true">↗</span> تصدير التقرير
+        </button>
+      </div>
+    </div>
+
+    <div class="impact-toolbar" aria-label="اختيار الفترة الزمنية">
+      <div class="period-tabs" id="impactPeriod">
+        <button type="button" data-period="month">30 يومًا</button>
+        <button type="button" data-period="quarter">ربع سنوي</button>
+        <button type="button" class="active" data-period="year">هذا العام</button>
+      </div>
+      <div class="impact-disclaimer">بيانات توضيحية لنموذج العرض · قابلة للربط الفوري بقواعد بيانات المنصة</div>
+    </div>
+
+    <div class="impact-kpis" aria-label="المؤشرات الوطنية الرئيسية">
+      <article class="impact-kpi reveal">
+        <div class="kpi-top"><span class="kpi-icon people-icon" aria-hidden="true">●</span><span class="kpi-trend up">↑ 24.8%</span></div>
+        <span class="kpi-label">إجمالي المتطوعين النشطين</span>
+        <strong data-impact-kpi="volunteers">18,420</strong>
+        <small>من 62% من البلديات المستهدفة</small>
+      </article>
+      <article class="impact-kpi reveal">
+        <div class="kpi-top"><span class="kpi-icon clock-icon" aria-hidden="true">◷</span><span class="kpi-trend up">↑ 31.2%</span></div>
+        <span class="kpi-label">الساعات التطوعية الموثّقة</span>
+        <strong data-impact-kpi="hours">96,500</strong>
+        <small>بمتوسط 5.2 ساعة لكل متطوع</small>
+      </article>
+      <article class="impact-kpi reveal">
+        <div class="kpi-top"><span class="kpi-icon value-icon" aria-hidden="true">د.ل</span><span class="kpi-trend up">↑ 18.6%</span></div>
+        <span class="kpi-label">القيمة الاقتصادية المقدّرة</span>
+        <strong data-impact-kpi="value">4.82 مليون</strong>
+        <small>دينار ليبي من الوقت والخبرات</small>
+      </article>
+      <article class="impact-kpi reveal">
+        <div class="kpi-top"><span class="kpi-icon check-icon" aria-hidden="true">✓</span><span class="kpi-trend stable">96.4%</span></div>
+        <span class="kpi-label">نسبة إكمال الفرص</span>
+        <strong data-impact-kpi="completion">87.6%</strong>
+        <small>رضا الجهات المستفيدة 4.8 من 5</small>
+      </article>
+    </div>
+
+    <div class="impact-main-grid">
+      <article class="impact-panel activity-panel reveal">
+        <div class="panel-head">
+          <div><span class="panel-kicker">الاتجاه العام</span><h3>نمو ساعات التطوع</h3></div>
+          <div class="chart-total"><b id="chartTotal">96,500</b><span>ساعة موثّقة</span></div>
+        </div>
+        <div class="bar-chart" id="impactChart" role="img" aria-label="رسم بياني لنمو ساعات التطوع خلال أشهر العام">
+          <div class="chart-grid-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="bar-item"><span class="bar-value">4.1k</span><i style="--bar-height:29%"></i><b>يناير</b></div>
+          <div class="bar-item"><span class="bar-value">4.8k</span><i style="--bar-height:35%"></i><b>فبراير</b></div>
+          <div class="bar-item"><span class="bar-value">5.4k</span><i style="--bar-height:41%"></i><b>مارس</b></div>
+          <div class="bar-item"><span class="bar-value">6.2k</span><i style="--bar-height:48%"></i><b>أبريل</b></div>
+          <div class="bar-item"><span class="bar-value">7.1k</span><i style="--bar-height:56%"></i><b>مايو</b></div>
+          <div class="bar-item"><span class="bar-value">7.8k</span><i style="--bar-height:63%"></i><b>يونيو</b></div>
+          <div class="bar-item"><span class="bar-value">8.5k</span><i style="--bar-height:70%"></i><b>يوليو</b></div>
+          <div class="bar-item"><span class="bar-value">9.2k</span><i style="--bar-height:76%"></i><b>أغسطس</b></div>
+          <div class="bar-item"><span class="bar-value">10.1k</span><i style="--bar-height:85%"></i><b>سبتمبر</b></div>
+          <div class="bar-item"><span class="bar-value">10.8k</span><i style="--bar-height:92%"></i><b>أكتوبر</b></div>
+          <div class="bar-item"><span class="bar-value">11.3k</span><i style="--bar-height:97%"></i><b>نوفمبر</b></div>
+          <div class="bar-item active"><span class="bar-value">11.2k</span><i style="--bar-height:94%"></i><b>ديسمبر</b></div>
+        </div>
+        <div class="chart-insight"><span>✦</span><p><b>فرصة تنموية:</b> ارتفع النشاط 38% بعد إطلاق حملات المدارس والبيئة، ويمكن تكرار النموذج في بلديات الجنوب.</p></div>
+      </article>
+
+      <article class="impact-panel regions-panel reveal">
+        <div class="panel-head"><div><span class="panel-kicker">التغطية الجغرافية</span><h3>المدن الأعلى مشاركة</h3></div><span class="coverage-pill">22 مدينة</span></div>
+        <div class="region-list">
+          <div class="region-row"><span class="region-rank">01</span><div><b>طرابلس</b><span><i style="width:100%"></i></span></div><strong>4,120</strong></div>
+          <div class="region-row"><span class="region-rank">02</span><div><b>بنغازي</b><span><i style="width:79%"></i></span></div><strong>3,240</strong></div>
+          <div class="region-row"><span class="region-rank">03</span><div><b>مصراتة</b><span><i style="width:53%"></i></span></div><strong>2,180</strong></div>
+          <div class="region-row"><span class="region-rank">04</span><div><b>الزاوية</b><span><i style="width:33%"></i></span></div><strong>1,340</strong></div>
+          <div class="region-row"><span class="region-rank">05</span><div><b>البيضاء</b><span><i style="width:25%"></i></span></div><strong>1,020</strong></div>
+          <div class="region-row"><span class="region-rank">06</span><div><b>سبها</b><span><i style="width:24%"></i></span></div><strong>980</strong></div>
+        </div>
+        <div class="region-alert"><span>!</span><p><b>فجوة تحتاج تدخّلًا:</b> 8 بلديات تسجّل أقل من 100 متطوع نشط.</p></div>
+      </article>
+    </div>
+
+    <div class="impact-secondary-grid">
+      <article class="impact-panel sector-panel reveal">
+        <div class="panel-head"><div><span class="panel-kicker">توزيع الجهد</span><h3>الساعات حسب القطاع</h3></div></div>
+        <div class="sector-content">
+          <div class="sector-donut" role="img" aria-label="التعليم 29 بالمئة، الصحة 23 بالمئة، البيئة 19 بالمئة، الإغاثة 16 بالمئة، قطاعات أخرى 13 بالمئة">
+            <div><b>96.5K</b><span>إجمالي الساعات</span></div>
+          </div>
+          <ul class="sector-legend">
+            <li><i class="sector-1"></i><span>التعليم</span><b>29%</b></li>
+            <li><i class="sector-2"></i><span>الصحة</span><b>23%</b></li>
+            <li><i class="sector-3"></i><span>البيئة</span><b>19%</b></li>
+            <li><i class="sector-4"></i><span>الإغاثة</span><b>16%</b></li>
+            <li><i class="sector-5"></i><span>قطاعات أخرى</span><b>13%</b></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="impact-panel profile-panel reveal">
+        <div class="panel-head"><div><span class="panel-kicker">رأس المال البشري</span><h3>ملف المجتمع التطوعي</h3></div></div>
+        <div class="profile-stat"><div><span>مشاركة الشباب 18–34</span><b>71%</b></div><i><em style="width:71%"></em></i></div>
+        <div class="profile-stat"><div><span>مشاركة النساء</span><b>46%</b></div><i><em style="width:46%"></em></i></div>
+        <div class="profile-stat"><div><span>أصحاب المهارات المتخصصة</span><b>38%</b></div><i><em style="width:38%"></em></i></div>
+        <div class="profile-chips"><span>3,260 معلّمًا</span><span>1,840 طبيبًا وممرضًا</span><span>2,190 تقنيًا</span></div>
+      </article>
+
+      <article class="impact-panel outcomes-panel reveal">
+        <div class="panel-head"><div><span class="panel-kicker">أثر قابل للقياس</span><h3>نتائج ميدانية</h3></div></div>
+        <div class="outcome-grid">
+          <div><span>مدرسة دُعمت</span><b>128</b><small>+18 هذا الشهر</small></div>
+          <div><span>مستفيد مباشر</span><b>64.2K</b><small>في 11 قطاعًا</small></div>
+          <div><span>شجرة زُرعت</span><b>41K</b><small>41% من الهدف</small></div>
+          <div><span>حقيبة إغاثية</span><b>8,740</b><small>زمن استجابة 6 ساعات</small></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="data-confidence reveal">
+      <div class="confidence-score"><span>موثوقية البيانات</span><b>96.4%</b></div>
+      <div class="confidence-item"><span class="confidence-icon">✓</span><div><b>توثيق متعدد المصادر</b><small>تحقق الجهات + حضور رقمي + تقييم المستفيد</small></div></div>
+      <div class="confidence-item"><span class="confidence-icon">⌁</span><div><b>تغطية لحظية</b><small>تجميع مؤشرات من 310 جهات شريكة</small></div></div>
+      <div class="confidence-item"><span class="confidence-icon">⌾</span><div><b>جاهزية القرار</b><small>تقارير حسب البلدية والقطاع والفئة العمرية</small></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="mub-footer"></div>
+<script src="./mubader.js"></script>
+</body>
+</html>
